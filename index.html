@@ -24,6 +24,14 @@
   </div>
   <script src="https://www.puck-js.com/puck.js"></script>
   <script>
+    let blocks = []
+    let index = 0
+    let count = 0
+    let toggle = true
+    let leftBound = 0
+    let rightBound = 0
+    let myInterval
+    let rowId = null
     document.querySelector('#connect').addEventListener('click', e => {
       Puck.connect(function (c) {
         // if (!c) {
@@ -37,7 +45,7 @@
         connection.on("data", function (d) {
           if (d === 'click') {
             clearInterval(myInterval)
-            let blockMargin = document.querySelector('.block').style.marginLeft
+            let blockMargin = document.querySelector(`row-${rowId}`).style.marginLeft
             leftBound = parseInt([...blockMargin].splice(0, blockMargin.length - 2).join(''))
             rightBound = window.outerWidth - leftBound - 110
             index++
@@ -65,13 +73,6 @@
         });
       });
     })
-    let blocks = []
-    let index = 0
-    let count = 0
-    let toggle = true
-    let leftBound = 0
-    let rightBound = 0
-    let myInterval
 
     for (let i = 0; i < 26; i++) {
       let blockElem = document.createElement('div')
@@ -82,21 +83,23 @@
     }
     const renderBlock = _ => {
       let rowElem = document.createElement('div')
+      rowId = index <= 2 ? 1 : index <= 5 ? 2 : index <= 8 ? 3 : 4
+      rowElem.id = `row-${rowId}`
       let amount = index <= 2 ? 4 : index <= 5 ? 3 : index <= 8 ? 2 : 1
       for (let i = index; i < index + amount; i++) {
-        rowElem.append(blocks[i])     
+        rowElem.append(blocks[i])
       }
       document.querySelector('#game').append(rowElem)
       myInterval = setInterval(_ => {
         if (toggle) {
           count = count + 20
-          document.querySelector(`#block-${index}`).style.marginLeft = `${count}px`
+          document.querySelector(`#row-${rowId}`).style.marginLeft = `${count}px`
           if (count === window.outerWidth - 125 * amount) {
             toggle = !toggle
           }
         } else {
           count = count - 20
-          document.querySelector(`#block-${index}`).style.marginLeft = `${count}px`
+          document.querySelector(`#row-${rowId}`).style.marginLeft = `${count}px`
           if (count === 0) {
             toggle = !toggle
           }
