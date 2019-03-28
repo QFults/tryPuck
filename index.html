@@ -42,6 +42,7 @@
             buf = buf.substr(i + 1);
             i = buf.indexOf("\n");
           }
+          console.log(d)
         });
         // First, reset Puck.js
         connection.write("reset();\n", function () {
