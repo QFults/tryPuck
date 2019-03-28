@@ -43,7 +43,7 @@
         // whenever we get a line
         var buf = "";
         connection.on("data", function (d) {
-          if (d === 'click') {
+          if (parseInt(d) === 100) {
             console.log('ping')
             clearInterval(myInterval)
             let blockMargin = document.querySelector(`row-${rowId}`).style.marginLeft
@@ -64,7 +64,7 @@
             // resets so the setInterval doesn't keep draining battery.
             connection.write(`
             setWatch(function (e) {
-              Bluetooth.println('click');
+              Bluetooth.println(100);
             }, BTN, { edge:"falling",repeat:true,debounce:50});
             `, function () { console.log("Ready..."); });
           }, 1500)
