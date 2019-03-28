@@ -35,13 +35,15 @@
         // whenever we get a line
         var buf = "";
         connection.on("data", function (d) {
-          clearInterval(myInterval)
-          let blockMargin = document.querySelector('.block').style.marginLeft
-          leftBound = parseInt([...blockMargin].splice(0, blockMargin.length - 2).join(''))
-          rightBound = window.outerWidth - leftBound - 110
-          index++
-          if (index < blocks.length) {
-            renderBlock()
+          if (typeof d === 'object') {
+            clearInterval(myInterval)
+            let blockMargin = document.querySelector('.block').style.marginLeft
+            leftBound = parseInt([...blockMargin].splice(0, blockMargin.length - 2).join(''))
+            rightBound = window.outerWidth - leftBound - 110
+            index++
+            if (index < blocks.length) {
+              renderBlock()
+            }
           }
         });
         // First, reset Puck.js
