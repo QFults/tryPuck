@@ -46,7 +46,7 @@
           if (parseInt(d) === 100) {
             console.log('ping')
             clearInterval(myInterval)
-            let blockMargin = document.querySelector(`row-${rowId}`).style.marginLeft
+            let blockMargin = document.querySelector(`#row-${rowId}`).style.marginLeft
             leftBound = parseInt([...blockMargin].splice(0, blockMargin.length - 2).join(''))
             rightBound = window.outerWidth - leftBound - 110
             index++
