@@ -44,17 +44,17 @@
           // }
           console.log(d)
         });
-        // First, reset Puck.js
-        connection.write("reset();\n", function () {
-          // Wait for it to reset itself
-          setTimeout(function () {
-            // Now tell it to write data on the current light level to Bluetooth
-            // 10 times a second. Also ensure that when disconnected, Puck.js
-            // resets so the setInterval doesn't keep draining battery.
-            connection.write("setInterval(function(){Bluetooth.println(Puck.light());},100);NRF.on('disconnect', function() {reset()});\n",
-              function () { console.log("Ready..."); });
-          }, 1500);
-        });
+        // // First, reset Puck.js
+        // connection.write("reset();\n", function () {
+        //   // Wait for it to reset itself
+        //   setTimeout(function () {
+        //     // Now tell it to write data on the current light level to Bluetooth
+        //     // 10 times a second. Also ensure that when disconnected, Puck.js
+        //     // resets so the setInterval doesn't keep draining battery.
+        //     connection.write("setInterval(function(){Bluetooth.println(Puck.light());},100);NRF.on('disconnect', function() {reset()});\n",
+        //       function () { console.log("Ready..."); });
+        //   }, 1500);
+        // });
       });
     })
     let blocks = []
