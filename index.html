@@ -103,7 +103,7 @@
         blockElem.setAttribute('data-row', rowId)
         rowElem.append(blockElem)
       }
-      document.querySelector('#game').append(rowElem)
+      document.querySelector('#game').prepend(rowElem)
       myInterval = setInterval(_ => {
         if (toggle) {
           count = count + 20
