@@ -75,20 +75,25 @@
       });
     })
 
-    for (let i = 0; i < 26; i++) {
-      let blockElem = document.createElement('div')
-      blockElem.className = 'block'
-      blockElem.style.display = 'inline-block'
-      blockElem.id = `block-${i}`
-      blocks.push(blockElem)
-    }
+    // for (let i = 0; i < 26; i++) {
+    //   let blockElem = document.createElement('div')
+    //   blockElem.className = 'block'
+    //   blockElem.style.display = 'inline-block'
+    //   blockElem.id = `block-${i}`
+    //   blocks.push(blockElem)
+    // }
     const renderBlock = _ => {
       let rowElem = document.createElement('div')
       rowId = index <= 2 ? 1 : index <= 5 ? 2 : index <= 8 ? 3 : 4
       rowElem.id = `row-${rowId}`
       let amount = index <= 2 ? 4 : index <= 5 ? 3 : index <= 8 ? 2 : 1
       for (let i = 0; i < amount; i++) {
-        rowElem.append(blocks[i])
+        let blockElem = document.createElement('div')
+        blockElem.className = 'block'
+        blockElem.style.display = 'inline-block'
+        blockElem.id = `block-${i}`
+        blockElem.setAttribute('data-row', rowId)
+        rowElem.append(blockElem)
       }
       document.querySelector('#game').append(rowElem)
       myInterval = setInterval(_ => {
