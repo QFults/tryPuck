@@ -35,8 +35,7 @@
         // whenever we get a line
         var buf = "";
         connection.on("data", function (d) {
-          console.log(typeof d)
-          if (typeof d === 'object') {
+          if (d === 100) {
             clearInterval(myInterval)
             let blockMargin = document.querySelector('.block').style.marginLeft
             leftBound = parseInt([...blockMargin].splice(0, blockMargin.length - 2).join(''))
@@ -56,7 +55,7 @@
             // resets so the setInterval doesn't keep draining battery.
             connection.write(`
             setWatch(function (e) {
-              Bluetooth.println(e);
+              Bluetooth.println(100);
             }, BTN, { edge:"falling",repeat:true,debounce:50});
             `, function () { console.log("Ready..."); });
           }, 1500)
