@@ -35,6 +35,7 @@
         // whenever we get a line
         var buf = "";
         connection.on("data", function (d) {
+          console.log(typeof d)
           if (typeof d === 'object') {
             clearInterval(myInterval)
             let blockMargin = document.querySelector('.block').style.marginLeft
