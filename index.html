@@ -35,7 +35,8 @@
         // whenever we get a line
         var buf = "";
         connection.on("data", function (d) {
-          if (d === 100) {
+          console.log(d)
+          if (parseInt(d) === 100) {
             clearInterval(myInterval)
             let blockMargin = document.querySelector('.block').style.marginLeft
             leftBound = parseInt([...blockMargin].splice(0, blockMargin.length - 2).join(''))
