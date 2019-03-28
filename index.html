@@ -14,6 +14,13 @@
       background-color: red;
       margin: 10px;
     }
+    div.row {
+      position: relative;
+    }
+    div#game {
+      width: 1000px;
+      margin: auto
+    }
   </style>
 </head>
 
@@ -86,6 +93,7 @@
       let rowElem = document.createElement('div')
       rowId = index
       rowElem.id = `row-${index}`
+      rowElem.className = 'row'
       let amount = index <= 2 ? 4 : index <= 5 ? 3 : index <= 8 ? 2 : 1
       for (let i = 0; i < amount; i++) {
         let blockElem = document.createElement('div')
@@ -99,13 +107,14 @@
       myInterval = setInterval(_ => {
         if (toggle) {
           count = count + 20
-          document.querySelector(`#row-${rowId}`).style.marginLeft = `${count}px`
-          if (count === window.outerWidth - 125 * amount) {
+          document.querySelector(`#row-${rowId}`).style.left = `${count}px`
+          if (count === document.querySelector(`#row-${rowId}`).parentElement.offsetWidth - (120 * amount)) {
+            console.log(document.querySelector(`#row-${rowId}`).parentElement.offsetWidth)
             toggle = !toggle
           }
         } else {
           count = count - 20
-          document.querySelector(`#row-${rowId}`).style.marginLeft = `${count}px`
+          document.querySelector(`#row-${rowId}`).style.left = `${count}px`
           if (count === 0) {
             toggle = !toggle
           }
