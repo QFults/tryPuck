@@ -84,8 +84,8 @@
     // }
     const renderBlock = _ => {
       let rowElem = document.createElement('div')
-      rowId = index <= 2 ? 1 : index <= 5 ? 2 : index <= 8 ? 3 : 4
-      rowElem.id = `row-${rowId}`
+      rowId = index
+      rowElem.id = `row-${index}`
       let amount = index <= 2 ? 4 : index <= 5 ? 3 : index <= 8 ? 2 : 1
       for (let i = 0; i < amount; i++) {
         let blockElem = document.createElement('div')
